@@ -44,7 +44,7 @@ impl From<IoError> for Error {
 impl fmt::Display for Error {
     fn fmt(
         &self,
-        f: &mut fmt::Formatter,
+        f: &mut fmt::Formatter<'_>,
     ) -> fmt::Result {
         write!(f, "Docker Error: ")?;
         match self {
@@ -79,7 +79,7 @@ impl StdError for Error {
         }
     }
 
-    fn cause(&self) -> Option<&StdError> {
+    fn cause(&self) -> Option<&dyn StdError> {
         match self {
             Error::SerdeJsonError(ref err) => Some(err),
             Error::Http(ref err) => Some(err),

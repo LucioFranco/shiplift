@@ -52,7 +52,7 @@ pub enum Transport {
 impl fmt::Debug for Transport {
     fn fmt(
         &self,
-        f: &mut fmt::Formatter,
+        f: &mut fmt::Formatter<'_>,
     ) -> fmt::Result {
         match *self {
             Transport::Tcp { ref host, .. } => write!(f, "Tcp({})", host),
